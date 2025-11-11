@@ -1,0 +1,56 @@
+package practicalwork;
+
+import java.util.Scanner;
+
+public class Task4 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Введите размер массива: ");
+        int size = scanner.nextInt();
+        
+        int[] numbers = new int[size];
+        
+        // Ввод элементов массива
+        System.out.println("Введите элементы массива:");
+        int i = 0;
+        while (i < size) {
+            System.out.print("Элемент " + (i + 1) + ": ");
+            numbers[i] = scanner.nextInt();
+            i++;
+        }
+        
+        // Вычисление суммы с помощью do while
+        int sum = 0;
+        int j = 0;
+        do {
+            sum += numbers[j];
+            j++;
+        } while (j < numbers.length);
+        
+        // Поиск минимального и максимального элемента
+        int min = numbers[0];
+        int max = numbers[0];
+        int k = 1;
+        while (k < numbers.length) {
+            if (numbers[k] < min) {
+                min = numbers[k];
+            }
+            if (numbers[k] > max) {
+                max = numbers[k];
+            }
+            k++;
+        }
+        
+        // Вывод результатов
+        System.out.println("\nВведенный массив:");
+        for (int number : numbers) {
+            System.out.print(number + " ");
+        }
+        System.out.println("\nСумма элементов: " + sum);
+        System.out.println("Минимальный элемент: " + min);
+        System.out.println("Максимальный элемент: " + max);
+        
+        scanner.close();
+    }
+}
