@@ -1,0 +1,48 @@
+package practicalwork2;
+
+
+public class TestBall {
+    public static void main(String[] args) {
+        // Создаем мячи разными конструкторами
+        Ball ball1 = new Ball(10.0, 20.0);
+        Ball ball2 = new Ball();
+        
+        System.out.println("=== Начальное состояние ===");
+        System.out.println("Мяч 1: " + ball1);
+        System.out.println("Мяч 2: " + ball2);
+        
+        // геттеры
+        System.out.println("\n=== Тестирование геттеров ===");
+        System.out.println("Мяч 1 - X: " + ball1.getX() + ", Y: " + ball1.getY());
+        
+        // сеттеры
+        System.out.println("\n=== Тестирование сеттеров ===");
+        ball1.setX(15.0);
+        ball1.setY(25.0);
+        System.out.println("После setX/setY: " + ball1);
+        
+        // Тестируем setXY
+        ball2.setXY(5.0, 5.0);
+        System.out.println("Мяч 2 после setXY: " + ball2);
+        
+        // Тестируем движение
+        System.out.println("\n=== Тестирование движения ===");
+        System.out.println("До движения: " + ball1);
+        ball1.move(3.0, -2.0);
+        System.out.println("После move(3, -2): " + ball1);
+      
+        System.out.println("\n=== Дополнительное тестирование ===");
+        Ball ball3 = new Ball(0.0, 0.0);
+        System.out.println("Мяч 3 создан: " + ball3);
+        
+        ball3.move(2.5, 3.5);
+        System.out.println("После первого перемещения: " + ball3);
+        
+        ball3.move(-1.0, 2.0);
+        System.out.println("После второго перемещения: " + ball3);
+        
+        // Проверка граничных значений
+        ball3.setXY(Double.MAX_VALUE, Double.MIN_VALUE);
+        System.out.println("Граничные значения: " + ball3);
+    }
+}
