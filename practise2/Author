@@ -1,0 +1,67 @@
+package practicalwork2;
+
+/**
+ * Класс Author описывает сущность Автор
+ */
+public class Author {
+    // Поля класса (атрибуты)
+    private String name;
+    private String email;
+    private char gender;
+    
+    /**
+     * Конструктор класса Author
+     * @param name - имя автора
+     * @param email - email автора
+     * @param gender - пол автора ('M' - мужской, 'F' - женский)
+     */
+    public Author(String name, String email, char gender) {
+        this.name = name;
+        this.email = email;
+        this.gender = gender;
+    }
+    
+    // Геттеры (методы для получения значений полей)
+    
+    /**
+     * @return имя автора
+     */
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * @return email автора
+     */
+    public String getEmail() {
+        return email;
+    }
+    
+    /**
+     * @return пол автора
+     */
+    public char getGender() {
+        return gender;
+    }
+    
+    // Сеттеры (методы для установки значений полей)
+    
+    /**
+     * Устанавливает новый email автора
+     * @param email - новый email
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    /**
+     
+     * @return 
+     */
+    @Override
+    public String toString() {
+        return "Author[name=" + name + 
+               ", email=" + email + 
+               ", gender=" + gender + "]";
+    }
+}
