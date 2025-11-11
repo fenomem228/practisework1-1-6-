@@ -1,0 +1,31 @@
+package practicalwork2;
+
+/**
+ * Класс для тестирования работы класса Author
+ */
+public class TestAuthor {
+    public static void main(String[] args) {
+        // Создаем объекты класса Author
+        Author author1 = new Author("Лев Толстой", "tolstoy@mail.ru", 'M');
+        Author author2 = new Author("Анна Ахматова", "akhmatova@gmail.com", 'F');
+        Author author3 = new Author("Александр Пушкин", "pushkin@yandex.ru", 'M');
+        
+        // Выводим информацию об авторах
+        System.out.println("=== Информация об авторах ===");
+        System.out.println("Автор 1: " + author1);
+        System.out.println("Автор 2: " + author2);
+        System.out.println("Автор 3: " + author3);
+        
+        // Демонстрируем работу геттеров
+        System.out.println("\n=== Работа геттеров ===");
+        System.out.println("Имя автора 1: " + author1.getName());
+        System.out.println("Email автора 2: " + author2.getEmail());
+        System.out.println("Пол автора 3: " + author3.getGender());
+        
+        // Демонстрируем работу сеттера
+        System.out.println("\n=== Изменение email ===");
+        System.out.println("Старый email автора 1: " + author1.getEmail());
+        author1.setEmail("tolstoy_new@mail.ru");
+        System.out.println("Новый email автора 1: " + author1.getEmail());
+    }
+}
