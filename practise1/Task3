@@ -1,1 +1,25 @@
+package practicalwork;
 
+public class Task3 {
+    public static void main(String[] args) {
+        // Инициализация массива как в C
+        int[] numbers = {5, 10, 15, 20, 25, 30};
+        int sum = 0;
+        
+        // Вычисление суммы элементов массива
+        for (int i = 0; i < numbers.length; i++) {
+            sum += numbers[i];
+        }
+        
+        // Вычисление среднего арифметического
+        double average = (double) sum / numbers.length;
+        
+        // Вывод результатов
+        System.out.println("Массив чисел:");
+        for (int number : numbers) {
+            System.out.print(number + " ");
+        }
+        System.out.println("\nСумма элементов: " + sum);
+        System.out.println("Среднее арифметическое: " + average);
+    }
+}
