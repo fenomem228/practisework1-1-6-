@@ -1,0 +1,60 @@
+package practicalwork2;
+
+public class Computer {
+    private String brand;      // бренд
+    private String model;      // модель
+    private double price;      // цена
+    private int ram;           // оперативная память (ГБ)
+    private int storage;       // объем памяти (ГБ)
+    private String processor;  // процессор
+    
+    public Computer(String brand, String model, double price, int ram, int storage, String processor) {
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+        this.ram = ram;
+        this.storage = storage;
+        this.processor = processor;
+    }
+    
+    // Геттеры
+    public String getBrand() {
+        return brand;
+    }
+    
+    public String getModel() {
+        return model;
+    }
+    
+    public double getPrice() {
+        return price;
+    }
+    
+    public int getRam() {
+        return ram;
+    }
+    
+    public int getStorage() {
+        return storage;
+    }
+    
+    public String getProcessor() {
+        return processor;
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("Computer[%s %s, Цена: %.2f руб., RAM: %dГБ, SSD: %dГБ, CPU: %s]",
+                brand, model, price, ram, storage, processor);
+    }
+    
+    // Метод для сравнения по характеристикам (упрощенный)
+    public boolean matches(String brand, String model, Integer minRam, Integer minStorage, Double maxPrice) {
+        if (brand != null && !this.brand.equalsIgnoreCase(brand)) return false;
+        if (model != null && !this.model.equalsIgnoreCase(model)) return false;
+        if (minRam != null && this.ram < minRam) return false;
+        if (minStorage != null && this.storage < minStorage) return false;
+        if (maxPrice != null && this.price > maxPrice) return false;
+        return true;
+    }
+}
