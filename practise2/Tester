@@ -1,0 +1,114 @@
+package practicalwork2;
+
+import java.util.Scanner;
+
+public class Tester {
+    private Circle[] circles;  // массив окружностей
+    private int count;         // количество элементов в массиве
+    
+    public Tester(int capacity) {
+        circles = new Circle[capacity];
+        count = 0;
+    }
+    
+    // Метод для добавления окружности
+    public void addCircle(Circle circle) {
+        if (count < circles.length) {
+            circles[count] = circle;
+            count++;
+            System.out.println("Окружность добавлена успешно!");
+        } else {
+            System.out.println("Массив переполнен! Невозможно добавить окружность.");
+        }
+    }
+    
+    // Метод для отображения всех окружностей
+    public void displayAllCircles() {
+        System.out.println("\n=== Все окружности в массиве ===");
+        if (count == 0) {
+            System.out.println("Массив пуст.");
+            return;
+        }
+        
+        for (int i = 0; i < count; i++) {
+            System.out.println((i + 1) + ". " + circles[i]);
+        }
+    }
+    
+    // Метод для поиска окружности с наименьшим радиусом
+    public Circle findSmallestCircle() {
+        if (count == 0) return null;
+        
+        Circle smallest = circles[0];
+        for (int i = 1; i < count; i++) {
+            if (circles[i].getRadius() < smallest.getRadius()) {
+                smallest = circles[i];
+            }
+        }
+        return smallest;
+    }
+    
+    // Метод для поиска окружности с наибольшей площадью
+    public Circle findLargestCircle() {
+        if (count == 0) return null;
+        
+        Circle largest = circles[0];
+        for (int i = 1; i < count; i++) {
+            if (circles[i].getArea() > largest.getArea()) {
+                largest = circles[i];
+            }
+        }
+        return largest;
+    }
+    
+    // Геттер для количества элементов
+    public int getCount() {
+        return count;
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Tester tester = new Tester(10); // Массив на 10 элементов
+        
+        System.out.println("=== Работа с массивом окружностей ===");
+        
+        // Добавляем несколько окружностей
+        tester.addCircle(new Circle(0, 0, 5.0, "Красный"));
+        tester.addCircle(new Circle(2, 3, 7.5, "Синий"));
+        tester.addCircle(new Circle(-1, -1, 3.2, "Зеленый"));
+        tester.addCircle(new Circle(10, 10, 12.0, "Желтый"));
+        
+        // Отображаем все окружности
+        tester.displayAllCircles();
+        
+        // Поиск окружностей с особыми свойствами
+        System.out.println("\n=== Поиск особых окружностей ===");
+        Circle smallest = tester.findSmallestCircle();
+        Circle largest = tester.findLargestCircle();
+        
+        if (smallest != null) {
+            System.out.println("Окружность с наименьшим радиусом: " + smallest);
+        }
+        
+        if (largest != null) {
+            System.out.println("Окружность с наибольшей площадью: " + largest);
+        }
+        
+        // Добавление окружности с клавиатуры
+        System.out.println("\n=== Добавление новой окружности ===");
+        System.out.print("Введите координату X центра: ");
+        double x = scanner.nextDouble();
+        System.out.print("Введите координату Y центра: ");
+        double y = scanner.nextDouble();
+        System.out.print("Введите радиус: ");
+        double radius = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.print("Введите цвет: ");
+        String color = scanner.nextLine();
+        
+        tester.addCircle(new Circle(x, y, radius, color));
+        tester.displayAllCircles();
+        
+        scanner.close();
+    }
+}
