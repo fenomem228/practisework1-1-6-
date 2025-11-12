@@ -1,0 +1,167 @@
+package practicalwork2;
+
+import java.util.Scanner;
+
+public class Shop {
+    private Computer[] computers;
+    private int count;
+    
+    public Shop(int capacity) {
+        computers = new Computer[capacity];
+        count = 0;
+    }
+    
+    // Метод добавления компьютера
+    public void addComputer(Computer computer) {
+        if (count < computers.length) {
+            computers[count] = computer;
+            count++;
+            System.out.println("Компьютер добавлен успешно!");
+        } else {
+            System.out.println("Магазин переполнен! Невозможно добавить компьютер.");
+        }
+    }
+    
+    // Метод удаления компьютера по индексу
+    public void removeComputer(int index) {
+        if (index >= 0 && index < count) {
+            for (int i = index; i < count - 1; i++) {
+                computers[i] = computers[i + 1];
+            }
+            computers[count - 1] = null;
+            count--;
+            System.out.println("Компьютер удален успешно!");
+        } else {
+            System.out.println("Неверный индекс!");
+        }
+    }
+    
+    // Метод поиска компьютера
+    public void findComputer() {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("\n=== Поиск компьютера ===");
+        System.out.print("Бренд (или Enter для пропуска): ");
+        String brand = scanner.nextLine().trim();
+        if (brand.isEmpty()) brand = null;
+        
+        System.out.print("Модель (или Enter для пропуска): ");
+        String model = scanner.nextLine().trim();
+        if (model.isEmpty()) model = null;
+        
+        System.out.print("Минимальный объем RAM (ГБ) (или 0 для пропуска): ");
+        int minRamInput = scanner.nextInt();
+        Integer minRam = (minRamInput > 0) ? minRamInput : null;
+        
+        System.out.print("Минимальный объем SSD (ГБ) (или 0 для пропуска): ");
+        int minStorageInput = scanner.nextInt();
+        Integer minStorage = (minStorageInput > 0) ? minStorageInput : null;
+        
+        System.out.print("Максимальная цена (или 0 для пропуска): ");
+        double maxPriceInput = scanner.nextDouble();
+        Double maxPrice = (maxPriceInput > 0) ? maxPriceInput : null;
+        
+        // Поиск подходящих компьютеров
+        boolean found = false;
+        System.out.println("\n=== Результаты поиска ===");
+        for (int i = 0; i < count; i++) {
+            if (computers[i].matches(brand, model, minRam, minStorage, maxPrice)) {
+                System.out.println((i + 1) + ". " + computers[i]);
+                found = true;
+            }
+        }
+        
+        if (!found) {
+            System.out.println("Компьютеры по заданным критериям не найдены.");
+        }
+    }
+    
+    // Метод для отображения всех компьютеров
+    public void displayAllComputers() {
+        System.out.println("\n=== Все компьютеры в магазине ===");
+        if (count == 0) {
+            System.out.println("Магазин пуст.");
+            return;
+        }
+        
+        for (int i = 0; i < count; i++) {
+            System.out.println((i + 1) + ". " + computers[i]);
+        }
+    }
+    
+    // Геттер для количества компьютеров
+    public int getCount() {
+        return count;
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Shop shop = new Shop(20);
+        
+        // Добавляем несколько компьютеров для примера
+        shop.addComputer(new Computer("Apple", "MacBook Pro", 199999.99, 16, 512, "M1"));
+        shop.addComputer(new Computer("Dell", "XPS 13", 129999.99, 8, 256, "Intel i5"));
+        shop.addComputer(new Computer("Lenovo", "ThinkPad", 89999.99, 16, 512, "Intel i7"));
+        shop.addComputer(new Computer("HP", "Pavilion", 74999.99, 8, 512, "AMD Ryzen 5"));
+        
+        // Интерфейс пользователя
+        while (true) {
+            System.out.println("\n=== Меню управления магазином ===");
+            System.out.println("1. Показать все компьютеры");
+            System.out.println("2. Добавить компьютер");
+            System.out.println("3. Удалить компьютер");
+            System.out.println("4. Найти компьютер");
+            System.out.println("5. Выход");
+            System.out.print("Выберите действие: ");
+            
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // очистка буфера
+            
+            switch (choice) {
+                case 1:
+                    shop.displayAllComputers();
+                    break;
+                    
+                case 2:
+                    System.out.println("\n=== Добавление нового компьютера ===");
+                    System.out.print("Бренд: ");
+                    String brand = scanner.nextLine();
+                    System.out.print("Модель: ");
+                    String model = scanner.nextLine();
+                    System.out.print("Цена: ");
+                    double price = scanner.nextDouble();
+                    System.out.print("Объем RAM (ГБ): ");
+                    int ram = scanner.nextInt();
+                    System.out.print("Объем SSD (ГБ): ");
+                    int storage = scanner.nextInt();
+                    scanner.nextLine(); // очистка буфера
+                    System.out.print("Процессор: ");
+                    String processor = scanner.nextLine();
+                    
+                    shop.addComputer(new Computer(brand, model, price, ram, storage, processor));
+                    break;
+                    
+                case 3:
+                    shop.displayAllComputers();
+                    if (shop.getCount() > 0) {
+                        System.out.print("Введите номер компьютера для удаления: ");
+                        int index = scanner.nextInt() - 1;
+                        shop.removeComputer(index);
+                    }
+                    break;
+                    
+                case 4:
+                    shop.findComputer();
+                    break;
+                    
+                case 5:
+                    System.out.println("Выход из программы...");
+                    scanner.close();
+                    return;
+                    
+                default:
+                    System.out.println("Неверный выбор! Попробуйте снова.");
+            }
+        }
+    }
+}
