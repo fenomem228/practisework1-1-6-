@@ -1,0 +1,61 @@
+package practicalwork2;
+
+public class Circle {
+    private Point center;  // центр окружности
+    private double radius; // радиус
+    private String color;  // цвет
+    
+    public Circle(Point center, double radius, String color) {
+        this.center = center;
+        this.radius = radius;
+        this.color = color;
+    }
+    
+    public Circle(double x, double y, double radius, String color) {
+        this.center = new Point(x, y);
+        this.radius = radius;
+        this.color = color;
+    }
+    
+    // Геттеры и сеттеры
+    public Point getCenter() {
+        return center;
+    }
+    
+    public void setCenter(Point center) {
+        this.center = center;
+    }
+    
+    public double getRadius() {
+        return radius;
+    }
+    
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+    
+    public String getColor() {
+        return color;
+    }
+    
+    public void setColor(String color) {
+        this.color = color;
+    }
+    
+    // Метод для вычисления площади
+    public double getArea() {
+        return Math.PI * radius * radius;
+    }
+    
+    // Метод для вычисления длины окружности
+    public double getCircumference() {
+        return 2 * Math.PI * radius;
+    }
+    
+    @Override
+    public String toString() {
+        return "Circle[center=" + center + ", radius=" + radius + 
+               ", color='" + color + "', area=" + String.format("%.2f", getArea()) + 
+               ", circumference=" + String.format("%.2f", getCircumference()) + "]";
+    }
+}
