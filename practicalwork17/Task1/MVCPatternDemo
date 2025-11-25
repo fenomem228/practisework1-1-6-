@@ -1,0 +1,32 @@
+package practicalwork17;
+
+public class MVCPatternDemo {
+    public static void main(String[] args) {
+        // Получаем данные курса из "базы данных"
+        Course model = retrieveCourseFromDatabase();
+
+        // Создаем представление
+        CourseView view = new CourseView();
+
+        // Создаем контроллер
+        CourseController controller = new CourseController(model, view);
+
+        // Обновляем представление
+        controller.updateView();
+
+        // Обновляем данные модели
+        controller.setCourseName("Python");
+        System.out.println("\nAfter updating, Course Details are as follows:");
+
+        // Снова обновляем представление
+        controller.updateView();
+    }
+
+    private static Course retrieveCourseFromDatabase() {
+        Course course = new Course();
+        course.setName("Java");
+        course.setId("01");
+        course.setCategory("Programming");
+        return course;
+    }
+}
