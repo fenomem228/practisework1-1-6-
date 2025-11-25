@@ -1,0 +1,22 @@
+package practicalwork17;
+
+public class EmployeeMVCDemo {
+    public static void main(String[] args) {
+        Employee model = retrieveEmployeeFromDatabase();
+        EmployeeView view = new EmployeeView();
+        EmployeeController controller = new EmployeeController(model, view);
+
+        controller.updateView();
+        controller.setEmployeeSalary(750000);
+        System.out.println("\nAfter salary update:");
+        controller.updateView();
+    }
+
+    private static Employee retrieveEmployeeFromDatabase() {
+        Employee emp = new Employee();
+        emp.setName("ED skrt");
+        emp.setId("E228");
+        emp.setSalary(50000);
+        return emp;
+    }
+}
