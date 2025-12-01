@@ -1,0 +1,18 @@
+package Practise;
+
+public class Task3 {
+    public static <T> T getElementAtIndex(T[] array, int index) {
+        if (index < 0 || index >= array.length) {
+            throw new IndexOutOfBoundsException("Индекс выходит за пределы массива");
+        }
+        return array[index];
+    }
+
+    public static void main(String[] args) {
+        Integer[] numbers = {100, 200, 300};
+        System.out.println("Элемент с веденным индексом: " + getElementAtIndex(numbers, 2));
+
+        String[] words = {"Маша", "Алиса", "Эдик"};
+        System.out.println("Элемент с веденным индексом: " + getElementAtIndex(words, 2));
+    }
+}
