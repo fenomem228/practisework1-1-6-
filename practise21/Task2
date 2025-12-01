@@ -1,0 +1,27 @@
+package Practise;
+
+public class Task2<T> {
+    private T[] array;
+
+    public Task2(T[] array) {
+        this.array = array;
+    }
+
+    public T[] getArray() {
+        return array;
+    }
+
+    public void setArray(T[] array) {
+        this.array = array;
+    }
+
+    public static void main(String[] args) {
+        Integer[] intArray = {10, 20, 30};
+        Task2<Integer> intContainer = new Task2<>(intArray);
+        System.out.println("Массив чисел: " + java.util.Arrays.toString(intContainer.getArray()));
+
+        String[] strArray = {"A", "B", "C"};
+        Task2<String> strContainer = new Task2<>(strArray);
+        System.out.println("Массив строк: " + java.util.Arrays.toString(strContainer.getArray()));
+    }
+}
