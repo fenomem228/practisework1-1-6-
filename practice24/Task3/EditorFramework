@@ -1,0 +1,50 @@
+public abstract class EditorFramework {
+    protected IDocument currentDocument;
+    protected ICreateDocument documentFactory;
+    
+    public EditorFramework(ICreateDocument factory) {
+        this.documentFactory = factory;
+    }
+  
+    public abstract void createMenu();
+    public abstract void createToolbar();
+    public abstract void createWindow();
+ 
+    public void newDocument() {
+        if (currentDocument != null) {
+            currentDocument.close();
+        }
+        currentDocument = documentFactory.createNew();
+        currentDocument.open();
+    }
+    
+    public void openDocument() {
+        if (currentDocument != null) {
+            currentDocument.close();
+        }
+        currentDocument = documentFactory.createOpen();
+        currentDocument.open();
+    }
+    
+    public void saveDocument() {
+        if (currentDocument != null) {
+            currentDocument.save();
+        } else {
+            System.out.println("Нет открытого документа для сохранения");
+        }
+    }
+    
+    public void exit() {
+        if (currentDocument != null) {
+            currentDocument.close();
+        }
+        System.out.println("Выход из приложения");
+    }
+    
+    public void run() {
+        createWindow();
+        createMenu();
+        createToolbar();
+        System.out.println("Редактор запущен");
+    }
+}
