@@ -1,0 +1,12 @@
+package practice24;
+public class MultifunctionalChair implements Chair {
+    @Override
+    public void sit() {
+        System.out.println("Сижу на многофункциональном стуле с регулировкой высоты");
+    }
+    
+    @Override
+    public String getType() {
+        return "Многофункциональный стул";
+    }
+}
