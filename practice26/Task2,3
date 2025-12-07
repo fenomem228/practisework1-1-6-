@@ -1,0 +1,47 @@
+import java.util.Iterator;
+
+class CustomList<T> implements Iterable<T> {
+    private Object[] data = new Object[10];
+    private int size = 0;
+    
+    void add(T item) {
+        if (size == data.length) {
+            Object[] newData = new Object[data.length * 2];
+            System.arraycopy(data, 0, newData, 0, size);
+            data = newData;
+        }
+        data[size++] = item;
+    }
+    
+    @SuppressWarnings("unchecked")
+    T get(int i) {
+        if (i < 0 || i >= size) throw new IndexOutOfBoundsException();
+        return (T) data[i];
+    }
+    
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private int cursor = 0;
+            
+            public boolean hasNext() {
+                return cursor < size;
+            }
+            
+            @SuppressWarnings("unchecked")
+            public T next() {
+                return (T) data[cursor++];
+            }
+        };
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        CustomList<String> list = new CustomList<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        
+        for (String s : list) System.out.print(s + " ");
+    }
+}
