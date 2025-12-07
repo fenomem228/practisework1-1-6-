@@ -1,0 +1,25 @@
+public class TextEditor extends EditorFramework {
+    
+    public TextEditor() {
+        super(new CreateTextDocument());
+    }
+    
+    @Override
+    public void createMenu() {
+        System.out.println("Создано меню текстового редактора:");
+        System.out.println("  File -> New");
+        System.out.println("  File -> Open");
+        System.out.println("  File -> Save");
+        System.out.println("  File -> Exit");
+    }
+    
+    @Override
+    public void createToolbar() {
+        System.out.println("Создана панель инструментов текстового редактора");
+    }
+    
+    @Override
+    public void createWindow() {
+        System.out.println("Создано главное окно текстового редактора");
+    }
+}
