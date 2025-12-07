@@ -1,0 +1,27 @@
+public class MusicEditor extends EditorFramework {
+    
+    public MusicEditor() {
+        super(new CreateMusicDocument());
+    }
+    
+    @Override
+    public void createMenu() {
+        System.out.println("Создано меню музыкального редактора:");
+        System.out.println("  File -> New");
+        System.out.println("  File -> Open");
+        System.out.println("  File -> Save");
+        System.out.println("  File -> Exit");
+        System.out.println("  Edit -> Cut");
+        System.out.println("  Edit -> Mix");
+    }
+    
+    @Override
+    public void createToolbar() {
+        System.out.println("Создана панель инструментов музыкального редактора");
+    }
+    
+    @Override
+    public void createWindow() {
+        System.out.println("Создано главное окно музыкального редактора");
+    }
+}
