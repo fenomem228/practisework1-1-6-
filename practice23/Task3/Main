@@ -1,0 +1,47 @@
+/**
+ * Класс для тестирования выражений
+ */
+public class Main {
+    public static void main(String[] args) {
+        if (args.length != 1) {
+            System.err.println("Usage: java Main <x_value>");
+            System.exit(1);
+        }
+        
+        try {
+            int x = Integer.parseInt(args[0]);
+            
+            // Выражение: x^2 - 2x + 1 = (x-1)^2
+            Expression expr = new Add(
+                new Subtract(
+                    new Multiply(
+                        new Variable("x"),
+                        new Variable("x")
+                    ),
+                    new Multiply(
+                        new Const(2),
+                        new Variable("x")
+                    )
+                ),
+                new Const(1)
+            );
+            
+            // Тестируем пример из задания: new Subtract(new Multiply(new Const(2), new Variable("x")), new Const(3))
+            Expression testExpr = new Subtract(
+                new Multiply(new Const(2), new Variable("x")),
+                new Const(3)
+            );
+            
+            System.out.println("Тестовое выражение: 2x - 3");
+            System.out.println("При x = 5: " + testExpr.evaluate(5));
+            
+            System.out.println("\nОсновное выражение: x^2 - 2x + 1");
+            System.out.println("При x = " + x + ": " + expr.evaluate(x));
+            
+        } catch (NumberFormatException e) {
+            System.err.println("Error: x must be an integer");
+        } catch (ArithmeticException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
