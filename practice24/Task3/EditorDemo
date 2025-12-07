@@ -1,0 +1,54 @@
+public class EditorDemo {
+    
+    public static void testTextEditor() {
+        System.out.println("\n=== Тестирование текстового редактора ===");
+        TextEditor textEditor = new TextEditor();
+        textEditor.run();
+        
+        System.out.println("\nДемонстрация работы меню:");
+        textEditor.newDocument();
+        textEditor.saveDocument();
+        textEditor.openDocument();
+        textEditor.exit();
+    }
+    
+    public static void testImageEditor() {
+        System.out.println("\n\n=== Тестирование редактора изображений ===");
+        ImageEditor imageEditor = new ImageEditor();
+        imageEditor.run();
+        
+        System.out.println("\nДемонстрация работы меню:");
+        imageEditor.newDocument();
+        imageEditor.saveDocument();
+        imageEditor.openDocument();
+        imageEditor.exit();
+    }
+    
+    public static void testMusicEditor() {
+        System.out.println("\n\n=== Тестирование музыкального редактора ===");
+        MusicEditor musicEditor = new MusicEditor();
+        musicEditor.run();
+        
+        System.out.println("\nДемонстрация работы меню:");
+        musicEditor.newDocument();
+        musicEditor.saveDocument();
+        musicEditor.openDocument();
+        musicEditor.exit();
+    }
+    
+    public static void main(String[] args) {
+        System.out.println("=== Демонстрация каркаса редактора с фабричным методом ===\n");
+        
+        testTextEditor();
+        testImageEditor();
+        testMusicEditor();
+        
+        System.out.println("\n=== Преимущества архитектуры ===");
+        System.out.println("1. Общий каркас EditorFramework используется для всех редакторов");
+        System.out.println("2. Для добавления нового типа редактора нужно:");
+        System.out.println("   - Создать новый класс документа (реализует IDocument)");
+        System.out.println("   - Создать фабрику (реализует ICreateDocument)");
+        System.out.println("   - Создать редактор (наследует EditorFramework)");
+        System.out.println("3. Каркас не зависит от конкретных типов документов");
+    }
+}
