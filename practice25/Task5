@@ -1,0 +1,26 @@
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.Scanner;
+
+public class PasswordValidator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите пароль для проверки: ");
+        String password = scanner.nextLine();
+        
+        if (isPasswordStrong(password)) {
+            System.out.println("Пароль надёжный.");
+        } else {
+            System.out.println("Пароль ненадёжный.");
+        }
+        
+        scanner.close();
+    }
+    
+    public static boolean isPasswordStrong(String password) {
+        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[A-Za-z\\d_]{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+}
