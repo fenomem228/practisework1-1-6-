@@ -1,0 +1,21 @@
+public class MusicDocument implements IDocument {
+    @Override
+    public void open() {
+        System.out.println("Открыт музыкальный документ");
+    }
+    
+    @Override
+    public void save() {
+        System.out.println("Музыкальный документ сохранен");
+    }
+    
+    @Override
+    public void close() {
+        System.out.println("Музыкальный документ закрыт");
+    }
+    
+    @Override
+    public String getType() {
+        return "Music Document";
+    }
+}
