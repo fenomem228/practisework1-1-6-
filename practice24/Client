@@ -1,0 +1,9 @@
+package practice24;
+public class Client {
+    public void sit(Chair chair) {
+        System.out.println("Клиент пытается сесть...");
+        chair.sit();
+        System.out.println("Тип стула: " + chair.getType());
+        System.out.println();
+    }
+}
