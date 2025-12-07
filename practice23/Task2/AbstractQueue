@@ -1,0 +1,27 @@
+public abstract class AbstractQueue implements Queue {
+    protected int size;
+    protected AbstractQueue() {
+        this.size = 0;
+    }
+    
+    @Override
+    public int size() {
+        return size;
+    }
+    
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+    protected void incrementSize() {
+        size++;
+    }
+    protected void decrementSize() {
+        if (size > 0) {
+            size--;
+        }
+    }
+    protected void resetSize() {
+        size = 0;
+    }
+}
