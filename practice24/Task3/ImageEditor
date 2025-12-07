@@ -1,0 +1,27 @@
+public class ImageEditor extends EditorFramework {
+    
+    public ImageEditor() {
+        super(new CreateImageDocument());
+    }
+    
+    @Override
+    public void createMenu() {
+        System.out.println("Создано меню редактора изображений:");
+        System.out.println("  File -> New");
+        System.out.println("  File -> Open");
+        System.out.println("  File -> Save");
+        System.out.println("  File -> Exit");
+        System.out.println("  Edit -> Crop");
+        System.out.println("  Edit -> Resize");
+    }
+    
+    @Override
+    public void createToolbar() {
+        System.out.println("Создана панель инструментов редактора изображений");
+    }
+    
+    @Override
+    public void createWindow() {
+        System.out.println("Создано главное окно редактора изображений");
+    }
+}
