@@ -1,0 +1,104 @@
+public class ArrayQueueADT {
+    private Object[] elements;
+    private int front;
+    private int rear;
+    private int size;
+    private final int capacity;
+    
+    public static ArrayQueueADT create(int capacity) {
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("Capacity must be positive");
+        }
+        
+        ArrayQueueADT queue = new ArrayQueueADT();
+        queue.elements = new Object[capacity];
+        queue.front = 0;
+        queue.rear = -1;
+        queue.size = 0;
+        queue.capacity = capacity;
+        return queue;
+    }
+    
+    private ArrayQueueADT() {} // Приватный конструктор
+
+    public static void enqueue(ArrayQueueADT queue, Object element) {
+        if (queue == null) {
+            throw new IllegalArgumentException("Queue cannot be null");
+        }
+        if (element == null) {
+            throw new IllegalArgumentException("Element cannot be null");
+        }
+        if (isFull(queue)) {
+            throw new IllegalStateException("Queue is full");
+        }
+        
+        queue.rear = (queue.rear + 1) % queue.capacity;
+        queue.elements[queue.rear] = element;
+        queue.size++;
+    }
+    
+    public static Object element(ArrayQueueADT queue) {
+        if (queue == null) {
+            throw new IllegalArgumentException("Queue cannot be null");
+        }
+        if (isEmpty(queue)) {
+            throw new IllegalStateException("Queue is empty");
+        }
+        return queue.elements[queue.front];
+    }
+    
+    public static Object dequeue(ArrayQueueADT queue) {
+        if (queue == null) {
+            throw new IllegalArgumentException("Queue cannot be null");
+        }
+        if (isEmpty(queue)) {
+            throw new IllegalStateException("Queue is empty");
+        }
+        
+        Object result = queue.elements[queue.front];
+        queue.elements[queue.front] = null;
+        queue.front = (queue.front + 1) % queue.capacity;
+        queue.size--;
+        
+        if (isEmpty(queue)) {
+            queue.front = 0;
+            queue.rear = -1;
+        }
+        
+        return result;
+    }
+ 
+    public static int size(ArrayQueueADT queue) {
+        if (queue == null) {
+            throw new IllegalArgumentException("Queue cannot be null");
+        }
+        return queue.size;
+    }
+
+    public static boolean isEmpty(ArrayQueueADT queue) {
+        if (queue == null) {
+            throw new IllegalArgumentException("Queue cannot be null");
+        }
+        return queue.size == 0;
+    }
+    
+    public static boolean isFull(ArrayQueueADT queue) {
+        if (queue == null) {
+            throw new IllegalArgumentException("Queue cannot be null");
+        }
+        return queue.size == queue.capacity;
+    }
+  
+    public static void clear(ArrayQueueADT queue) {
+        if (queue == null) {
+            throw new IllegalArgumentException("Queue cannot be null");
+        }
+        
+        for (int i = 0; i < queue.capacity; i++) {
+            queue.elements[i] = null;
+        }
+        queue.front = 0;
+        queue.rear = -1;
+        queue.size = 0;
+    }
+}
