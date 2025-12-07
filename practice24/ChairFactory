@@ -1,0 +1,4 @@
+package practice24;
+public interface ChairFactory {
+    Chair createChair();
+}
