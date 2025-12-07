@@ -1,0 +1,7 @@
+public interface Queue {
+    void enqueue(Object element);
+    Object element();
+    Object dequeue();
+    int size();/
+    void clear();
+}
