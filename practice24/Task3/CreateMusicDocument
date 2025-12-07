@@ -1,0 +1,13 @@
+public class CreateMusicDocument implements ICreateDocument {
+    @Override
+    public IDocument createNew() {
+        System.out.println("Создан новый музыкальный документ");
+        return new MusicDocument();
+    }
+    
+    @Override
+    public IDocument createOpen() {
+        System.out.println("Открыт существующий музыкальный документ");
+        return new MusicDocument();
+    }
+}
