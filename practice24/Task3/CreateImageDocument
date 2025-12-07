@@ -1,0 +1,13 @@
+public class CreateImageDocument implements ICreateDocument {
+    @Override
+    public IDocument createNew() {
+        System.out.println("Создан новый документ изображения");
+        return new ImageDocument();
+    }
+    
+    @Override
+    public IDocument createOpen() {
+        System.out.println("Открыт существующий документ изображения");
+        return new ImageDocument();
+    }
+}
